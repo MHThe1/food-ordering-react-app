@@ -1,6 +1,16 @@
 import ToggleTheme from "./ToggleTheme";
+import { useContext } from "react";
+import CartContext from "../store/CartContext.jsx";
+import UserProgressContext from "../store/UserProgressContext.jsx";
 
 export default function Header() {
+  const cartLength = useContext(CartContext).cartItems.length;
+  const userProgressCtx = useContext(UserProgressContext);
+
+  function handleShowCart() {
+    userProgressCtx.showCart();
+  }
+
   return (
     <nav
       className="sticky top-0 z-50 container mx-auto p-4 bg-pink-600 dark:bg-gray-800 shadow-md 
@@ -26,8 +36,8 @@ export default function Header() {
 
       {/* Cart Button (Right) */}
       <div className="md:flex-1 text-center md:text-right md:relative absolute top-4 right-4 md:top-0 md:right-0">
-        <button className="bg-black text-white px-4 py-3 rounded-md">
-          Cart (0)
+        <button onClick={handleShowCart} className="bg-black text-white px-4 py-3 rounded-md">
+          Cart ({cartLength})
         </button>
       </div>
     </nav>

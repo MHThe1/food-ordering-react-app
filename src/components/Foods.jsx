@@ -22,10 +22,11 @@ export default function Foods() {
   }, []);
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-      {loadedMeals.map((meal, index) => (
+    <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+      {loadedMeals.map((meal) => (
         <FoodItem
-          key={index}
+          key={meal.id}
+          id={meal.id}
           name={meal.name}
           price={meal.price}
           description={meal.description}
