@@ -1,25 +1,20 @@
-import { useEffect, useState } from "react";
+import useHttp from "../hooks/useHttp.js";
 import FoodItem from "./FoodItem.jsx";
 
-export default function Foods() {
-  const [loadedMeals, setLoadedMeals] = useState([]);
+const requestConfig = {}
 
+export default function Foods() {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
-  useEffect(() => {
-    async function getMeals() {
-      const response = await fetch(`${apiUrl}/meals`);
+  const { data: loadedMeals, isLoading, error } = useHttp(`${apiUrl}/meals`, requestConfig, []);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+  if (isLoading) {
+    return <p className="text-center text-xl mt-4 text-red-600 font-bold">Loading...</p>;
+  }
 
-      const meals = await response.json();
-      setLoadedMeals(meals);
-    }
-
-    getMeals();
-  }, []);
+  if (error) {
+    return <p className="text-center text-xl mt-4 text-red-600 font-bold">Error: {error}</p>;
+  }
 
   return (
     <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">

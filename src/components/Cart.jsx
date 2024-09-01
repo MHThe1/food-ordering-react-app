@@ -108,7 +108,8 @@ export default function Cart() {
                         </button>
                       </div>
                       <p className="text-white font-semibold text-sm">
-                        ${(Number(item.price) * (item.quantity || 1)).toFixed(2)}
+                        $
+                        {(Number(item.price) * (item.quantity || 1)).toFixed(2)}
                       </p>
                     </div>
                   </motion.div>
@@ -116,27 +117,41 @@ export default function Cart() {
               </AnimatePresence>
             </div>
 
-            <div className="border-t border-gray-700 pt-3">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-lg font-semibold text-white">Total:</span>
-                <span className="text-xl font-bold text-blue-400">
-                  {formatPrice(totalPrice)}
-                </span>
+            {cartCtx.cartItems.length > 0 ? (
+              <div className="border-t border-gray-700 pt-3">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-lg font-semibold text-white">
+                    Total:
+                  </span>
+                  <span className="text-xl font-bold text-blue-400">
+                    {formatPrice(totalPrice)}
+                  </span>
+                </div>
+
+                <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+                  <button
+                    onClick={handleClearCart}
+                    className="bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm"
+                  >
+                    <Trash2 className="w-4 h-4 mr-1" />
+                    Clear Cart
+                  </button>
+                  <button
+                    onClick={userProgressCtx.showCheckout}
+                    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm flex-grow"
+                  >
+                    <CreditCard className="w-4 h-4 mr-1" />
+                    Proceed to Checkout
+                  </button>
+                </div>
               </div>
-              <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
-                <button
-                  onClick={handleClearCart}
-                  className="bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm"
-                >
-                  <Trash2 className="w-4 h-4 mr-1" />
-                  Clear Cart
-                </button>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg transition-colors flex items-center justify-center text-sm flex-grow">
-                  <CreditCard className="w-4 h-4 mr-1" />
-                  Proceed to Checkout
-                </button>
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <h2 className="text-xl font-bold text-white">
+                  Your cart is empty
+                </h2>
               </div>
-            </div>
+            )}
           </motion.div>
         </motion.div>
       )}

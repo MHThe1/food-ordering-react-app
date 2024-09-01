@@ -6,6 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Foods from "./components/Foods.jsx";
 import { UserProgressContextProvider } from "./store/UserProgressContext.jsx";
 import Cart from "./components/Cart.jsx";
+import Checkout from "./components/Checkout.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Header />
               <Foods />
               <Cart />
+              <Checkout />
             </main>
             <Footer />
           </div>
