@@ -2,7 +2,7 @@ import ToggleTheme from "./ToggleTheme";
 
 export default function Footer() {
   return (
-    <footer className="bottom-0 flex flex-col items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-200 font-mono">
+    <footer className="bottom-0 flex flex-col items-center justify-center p-4 text-neutral-200 font-mono">
       
       <p className="mb-1">Developed by: @mhthe1</p>
       <ul className="flex space-x-4">

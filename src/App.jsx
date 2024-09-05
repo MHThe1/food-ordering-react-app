@@ -12,8 +12,13 @@ function App() {
   return (
     <UserProgressContextProvider>
       <CartContextProvider>
-        <div id="mainbody" className={ThemeMode() ? "dark" : ""}>
-          <div className="flex flex-col min-h-screen bg-neutral-100 dark:bg-neutral-900">
+        <div
+          id="mainbody"
+          className={`${
+            ThemeMode() ? "dark" : ""
+          } min-h-screen bg-gradient-to-b from-gray-900 to-gray-700`}
+        >
+          <div className="flex flex-col min-h-screen">
             <main className="flex-grow lg:px-10 xl:px-16 2xl:px-20 font-quicksand font-smooth-antialiased">
               <Header />
               <Foods />
